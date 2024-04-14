@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Numbers</title>
+</head>
+<body>
+<h1>Enter Numbers</h1>
+<form id="numbersForm">
+    <label for="numbersInput">Enter numbers (comma-separated):</label><br>
+    <input type="text" id="numbersInput" name="numbersInput"><br><br>
+    <button type="submit">Submit</button>
+</form>
+<button id="showPrevious">Show Previous</button>
+
+<script>
+    document.getElementById("numbersForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        const numbersInput = document.getElementById("numbersInput").value;
+        fetch("/api/process-numbers", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(numbersInput.split(",").map(Number))
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data); // You can handle the response data here
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    });
+
+    document.getElementById("showPrevious").addEventListener("click", function() {
+        window.location.href = "/previous-trees";
+    });
+</script>
+</body>
+</html>
