@@ -9,7 +9,7 @@ public class BinaryTree {
     private Long id;
 
     @Column(columnDefinition = "TEXT")
-    private String inputNumbers;
+    private String input_numbers;
 
     @Transient // Exclude from persistence
     private Node root;
@@ -24,7 +24,7 @@ public class BinaryTree {
     // Constructor with input numbers
     public BinaryTree(int[] numbers) {
         this.root = null; // Root will be constructed by insert method
-        this.inputNumbers = arrayToString(numbers);
+        this.input_numbers = arrayToString(numbers);
         // Will be constructed by insert method
         for (int num : numbers) {
             insert(num); // Constructing the tree while inserting each number
