@@ -7,4 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BinaryTreeRepository extends JpaRepository<BinaryTree, Long> {
     // You can define custom query methods here if needed
+
+    // Method to save a binary tree constructed from numbers
+    BinaryTree saveBinaryTree(int[] numbers);
 }
